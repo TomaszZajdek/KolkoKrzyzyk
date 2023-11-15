@@ -52,7 +52,7 @@ public class UserInteractions extends Constants {
             System.out.println("2 - 10 by 10");
             System.out.println("3 - Exit");
             String pickFromMenu = scanner.next();
-            if (pickFromMenu.equals("1") || pickFromMenu.equals("2") || pickFromMenu.equals("3")) {
+            if (pickFromMenu.equals(MODE_3_BY_3) || pickFromMenu.equals(MODE_10_BY_10) || pickFromMenu.equals(EXIT)) {
                 return pickFromMenu;
             } else {
                 System.out.println("Invalid choice. Please select 1, 2, or 3.");
