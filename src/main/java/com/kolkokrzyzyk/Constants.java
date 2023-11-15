@@ -8,4 +8,6 @@ public class Constants {
     public static final String PLAYER_1_SYMBOL = "X";
     public static final String PLAYER_2_SYMBOL = "O";
     public static final String EXIT= "3";
+    public static final String NEXT_GAME = "1";
+    public static final String MAIN_MENU = "2";
 }

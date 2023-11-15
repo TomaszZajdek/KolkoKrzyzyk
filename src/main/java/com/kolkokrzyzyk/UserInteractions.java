@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class UserInteractions extends Constants {
 
+
     Scanner scanner = new Scanner(System.in);
 
     public void newGame() {
@@ -165,13 +166,13 @@ public class UserInteractions extends Constants {
         System.out.println("3 - Exit.");
         String menuChoice = scanner.next();
         switch (menuChoice) {
-            case "1":
+            case NEXT_GAME:
                 gameplay(game, playerVs);
                 endingMenu(game, playerVs);
                 break;
-            case "2":
+            case MAIN_MENU:
                 break;
-            case "3":
+            case EXIT:
                 System.out.println("Bye bye!");
                 return true;
 
