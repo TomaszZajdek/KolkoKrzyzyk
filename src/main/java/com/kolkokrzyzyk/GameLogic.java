@@ -47,7 +47,7 @@ public class GameLogic extends Board{
             throw new IndexOutOfBoundsException("Invalid move: row or column out of bounds.");
         }
 
-        if (board.get(new Point(row, column)).equals(" ")) {
+        if (board.get(new Point(row, column)).equals(EMPTY_FIELD)) {
             return true;
         } else {
             throw new IllegalArgumentException("Invalid move: field is occupied.");
@@ -57,7 +57,7 @@ public class GameLogic extends Board{
         boolean draw = true;
         for(int row = 1; row <= boardLength; row++) {
             for(int column = 1; column <= boardLength; column++) {
-                if(board.get(new Point(row, column)).equals(" ")) {
+                if(board.get(new Point(row, column)).equals(EMPTY_FIELD)) {
                     draw = false;
                 }
             }
@@ -150,7 +150,7 @@ public class GameLogic extends Board{
         while (!computerMove) {
             int row = (int) (Math.random() * boardLength) + 1;
             int column = (int) (Math.random() * boardLength) + 1;
-            if (checkIfMoveIsValid(row, column)) {
+            if (board.get(new Point(row, column)).equals(" ")) {
                 makeMove(row, column, currentPlayer);
                 computerMove = true;
             }

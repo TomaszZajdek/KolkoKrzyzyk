@@ -11,31 +11,31 @@ public class UserInteractions extends Constants {
         boolean exitGame = false;
         while (!exitGame) {
             switch (mainMenu()) {
-                case mode3By3:
+                case MODE_3_BY_3:
                     String opponent3By3 = selectOpponent();
-                    if (opponent3By3.equals(playerVsPlayer)) {
-                        GameLogic thisGame = chooseMode(3, playerVsPlayer);
-                        gameplay(thisGame, playerVsPlayer);
-                        exitGame = endingMenu(thisGame, playerVsPlayer);
+                    if (opponent3By3.equals(PLAYER_VS_PLAYER)) {
+                        GameLogic thisGame = chooseMode(3, PLAYER_VS_PLAYER);
+                        gameplay(thisGame, PLAYER_VS_PLAYER);
+                        exitGame = endingMenu(thisGame, PLAYER_VS_PLAYER);
                     } else {
-                        GameLogic thisGame = chooseMode(3, playerVsComputer);
-                        gameplay(thisGame, playerVsComputer);
-                        exitGame = endingMenu(thisGame, playerVsComputer);
+                        GameLogic thisGame = chooseMode(3, PLAYER_VS_COMPUTER);
+                        gameplay(thisGame, PLAYER_VS_COMPUTER);
+                        exitGame = endingMenu(thisGame, PLAYER_VS_COMPUTER);
                     }
                     break;
-                case mode10By10:
+                case MODE_10_BY_10:
                     String opponent10By10 = selectOpponent();
-                    if (opponent10By10.equals(playerVsPlayer)) {
-                        GameLogic thisGame = chooseMode(10, playerVsPlayer);
-                        gameplay(thisGame, playerVsPlayer);
-                        exitGame = endingMenu(thisGame, playerVsPlayer);
+                    if (opponent10By10.equals(PLAYER_VS_PLAYER)) {
+                        GameLogic thisGame = chooseMode(10, PLAYER_VS_PLAYER);
+                        gameplay(thisGame, PLAYER_VS_PLAYER);
+                        exitGame = endingMenu(thisGame, PLAYER_VS_PLAYER);
                     } else {
-                        GameLogic thisGame = chooseMode(10, playerVsComputer);
-                        gameplay(thisGame, playerVsComputer);
-                        exitGame = endingMenu(thisGame, playerVsComputer);
+                        GameLogic thisGame = chooseMode(10, PLAYER_VS_COMPUTER);
+                        gameplay(thisGame, PLAYER_VS_COMPUTER);
+                        exitGame = endingMenu(thisGame, PLAYER_VS_COMPUTER);
                     }
                     break;
-                case exit:
+                case EXIT:
                     System.out.println("Bye bye !");
                     exitGame = true;
                     break;
@@ -63,21 +63,25 @@ public class UserInteractions extends Constants {
     public Player player1SetUp() {
         System.out.println("Player 1 name : ");
         String player1name = scanner.next();
-        return new Player(player1name, player1Symbol);
+        if(player1name.equals("Computer")) {
+            System.out.println("Och, so we will call You ComputerJunior.");
+            return new Player("ComputerJunior" , PLAYER_1_SYMBOL);
+        }
+        return new Player(player1name, PLAYER_1_SYMBOL);
     }
 
     public Player player2SetUp() {
         System.out.println("Player 2 name : ");
         String player2name = scanner.next();
-        return new Player(player2name, player2Symbol);
+        return new Player(player2name, PLAYER_2_SYMBOL);
     }
 
     private Player computerPlayerSetUp() {
-        return new Player("Computer", player2Symbol);
+        return new Player("Computer", PLAYER_2_SYMBOL);
     }
 
     public GameLogic chooseMode(int boardSize, String selectOpponent) {
-        if (selectOpponent.equals(playerVsPlayer)) {
+        if (selectOpponent.equals(PLAYER_VS_PLAYER)) {
             return new GameLogic(player1SetUp(), player2SetUp(), boardSize);
         }
         return new GameLogic(player1SetUp(), computerPlayerSetUp(), boardSize);
@@ -90,13 +94,13 @@ public class UserInteractions extends Constants {
             System.out.println("2 - Player vs Computer");
             String menuSelectOpponent = scanner.next();
             switch (menuSelectOpponent) {
-                case playerVsPlayer:
-                    return playerVsPlayer;
+                case PLAYER_VS_PLAYER:
+                    return PLAYER_VS_PLAYER;
 
 
 
-                case playerVsComputer:
-                    return playerVsComputer;
+                case PLAYER_VS_COMPUTER:
+                    return PLAYER_VS_COMPUTER;
 
 
                 default:
@@ -111,7 +115,7 @@ public class UserInteractions extends Constants {
         while(!gameOver) {
             boolean validMove = false;
             while(!validMove) {
-                if(playerVS.equals(playerVsComputer) && thisGame.getCurrentPlayer().getName().equals("Computer")) {
+                if(playerVS.equals(PLAYER_VS_COMPUTER) && thisGame.getCurrentPlayer().getName().equals("Computer")) {
                     System.out.println(thisGame.getCurrentPlayer() + " move!");
                     thisGame.makeComputerMove();
                     gameOver = checkGameOver(thisGame);

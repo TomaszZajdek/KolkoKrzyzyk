@@ -5,10 +5,9 @@ import java.util.HashMap;
 
 public class Board {
 
+    public static final String EMPTY_FIELD = " ";
     public HashMap<Point, String> board;
-    public HashMap<Point, String> getBoard() {
-        return board;
-    }
+
     int boardLength;
     public Board(int size) {
         boardLength = initializeClearBoard(size);
@@ -18,7 +17,7 @@ public class Board {
         board = new HashMap<>();
         for(int row = 1; row <= size; row++) {
             for(int column = 1; column <= size; column++) {
-                board.put(new Point(row, column), " ");
+                board.put(new Point(row, column), EMPTY_FIELD);
             }
         } return size;
     }
